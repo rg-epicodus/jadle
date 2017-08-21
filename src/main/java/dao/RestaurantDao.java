@@ -1,9 +1,11 @@
 package dao;
 
+import models.Restaurant;
+
 public interface RestaurantDao {
 
     //create
-//    void add (Restaurant restaurant); //J
+    void add (Restaurant restaurant); //J
     // void addRestaurantToFoodType(Restaurant restaurant, Foodtype foodtype) //D & E
 
     //read
