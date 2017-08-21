@@ -1,7 +1,10 @@
 package dao;
 
+import enums.DiningStyle;
+import models.Restaurant;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -29,4 +32,23 @@ public class Sql2oRestaurantDaoTest {
         conn.close();
     }
 
+    @Test
+    public void addingFoodSetsId() throws Exception {
+        Restaurant testRestaurant = setupRestaurant();
+        int originalRestaurantId = testRestaurant.getId();
+        restaurantDao.add(testRestaurant);
+        assertNotEquals(originalRestaurantId,testRestaurant.getId());
+    }
+
+    //helpers
+
+    public Restaurant setupRestaurant (){
+        return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874", "http://fishwitch.com", "hellofishy@fishwitch.com", "fishwitch.jpg", DiningStyle.CASUAL );
+
+    }
+
+    public Restaurant setupAltRestaurant (){
+        return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874", DiningStyle.CASUAL);
+
+    }
 }
