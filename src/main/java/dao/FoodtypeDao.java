@@ -1,5 +1,7 @@
 package dao;
 
+import models.Foodtype;
+
 public interface FoodtypeDao {
     //create
 //    void add(Foodtype foodtype); // N
