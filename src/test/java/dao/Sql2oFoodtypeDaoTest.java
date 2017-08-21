@@ -38,6 +38,15 @@ public class Sql2oFoodtypeDaoTest {
         assertNotEquals(originalFoodtypeId, testFootype.getId());
     }
 
+    @Test
+    public void addedFoodtypesAreReturnedFromGetAll() throws Exception {
+        Foodtype testfoodtype = setupNewFoodtype();
+        foodtypeDao.add(testfoodtype);
+        assertEquals(1, foodtypeDao.getAll().size());
+    }
+
+
+
     //helpers
 
     public Foodtype setupNewFoodtype(){
