@@ -1,6 +1,7 @@
 package dao;
 
 import enums.DiningStyle;
+import models.Foodtype;
 import models.Restaurant;
 import org.junit.After;
 import org.junit.Before;
@@ -30,17 +31,16 @@ public class Sql2oFoodtypeDaoTest {
     }
 
     @Test
-    public void addingFoodtypeSetsId() throws Exception {
-        Restaurant testRestaurant = setupRestaurant();
-        int originalRestaurantId = testRestaurant.getId();
-        restaurantDao.add(testRestaurant);
-        assertNotEquals(originalRestaurantId, testRestaurant.getId());
+    public void addingFoodSetsId() throws Exception {
+        Foodtype testFootype = setupNewFoodtype();
+        int originalFoodtypeId = testFootype.getId();
+        foodtypeDao.add(testFootype);
+        assertNotEquals(originalFoodtypeId, testFootype.getId());
     }
 
     //helpers
 
-    public Restaurant setupRestaurant (){
-        return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874", "http://fishwitch.com", "hellofishy@fishwitch.com", "fishwitch.jpg" );
-
+    public Foodtype setupNewFoodtype(){
+        return new Foodtype("Sushi");
     }
 }

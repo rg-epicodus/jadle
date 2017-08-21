@@ -4,7 +4,7 @@ import models.Foodtype;
 
 public interface FoodtypeDao {
     //create
-//    void add(Foodtype foodtype); // N
+    void add(Foodtype foodtype); // N
     //void addFoodTypeToRestaurant(Foodtype foodtype, Restaurant restaurant); // D
 
     //read
