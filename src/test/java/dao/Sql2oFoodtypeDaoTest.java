@@ -45,6 +45,10 @@ public class Sql2oFoodtypeDaoTest {
         assertEquals(1, foodtypeDao.getAll().size());
     }
 
+    @Test
+    public void noFoodtypesReturnsEmptyList() throws Exception {
+        assertEquals(0, foodtypeDao.getAll().size());
+    }
 
 
     //helpers
