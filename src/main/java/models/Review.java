@@ -1,26 +1,24 @@
 package models;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class Review {
+
+    private int id;
     private String writtenBy;
     private int rating;
-    private LocalDateTime createdAt;
-    private int id;
-    private int restaurantId; //i will be used to connect Restaurant to Review.
+    private Timestamp createdAt;
+    private int restaurantId;
     private String content;
-
-    // constructors
 
     public Review(String writtenBy, int rating, int restaurantId, String content) {
         this.writtenBy = writtenBy;
         this.rating = rating;
         this.restaurantId = restaurantId;
-        this.createdAt = LocalDateTime.now();
+        this.createdAt = Timestamp.valueOf(LocalDateTime.now());
         this.content = content;
     }
-
-    // getters and setters
 
     public String getWrittenBy() {
         return writtenBy;
@@ -38,8 +36,12 @@ public class Review {
         this.rating = rating;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
     public int getId() {
@@ -66,9 +68,6 @@ public class Review {
         this.content = content;
     }
 
-    // equals and hashcode
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -76,16 +75,20 @@ public class Review {
 
         Review review = (Review) o;
 
-        if (rating != review.rating) return false;
         if (id != review.id) return false;
-        return writtenBy.equals(review.writtenBy);
+        if (rating != review.rating) return false;
+        if (restaurantId != review.restaurantId) return false;
+        if (!writtenBy.equals(review.writtenBy)) return false;
+        return content.equals(review.content);
     }
 
     @Override
     public int hashCode() {
-        int result = writtenBy.hashCode();
+        int result = id;
+        result = 31 * result + writtenBy.hashCode();
         result = 31 * result + rating;
-        result = 31 * result + id;
+        result = 31 * result + restaurantId;
+        result = 31 * result + content.hashCode();
         return result;
     }
 }

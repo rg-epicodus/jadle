@@ -1,6 +1,8 @@
 package models;
 
+
 public class Restaurant {
+
     private String name;
     private String address;
     private String zipcode;
@@ -10,16 +12,15 @@ public class Restaurant {
     private String image;
     private int id;
 
-    //constructors
 
     public Restaurant(String name, String address, String zipcode, String phone) {
         this.name = name;
         this.address = address;
         this.zipcode = zipcode;
         this.phone = phone;
-        this.website = "No website listed";
-        this.email = "No email listed";
-        this.image = "/resources/images/uploads";
+        this.website = "no website listed";
+        this.email = "no email available";
+        this.image = "/resources/images/uploads/no_image.jpg";
     }
 
     public Restaurant(String name, String address, String zipcode, String phone, String website, String email, String image) {
@@ -32,8 +33,7 @@ public class Restaurant {
         this.image = image;
     }
 
-    // Getters
-
+    //getters and setters
     public String getName() {
         return name;
     }
@@ -98,9 +98,6 @@ public class Restaurant {
         this.id = id;
     }
 
-    // equals and hashcode
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,6 +105,7 @@ public class Restaurant {
 
         Restaurant that = (Restaurant) o;
 
+        if (id != that.id) return false;
         if (!name.equals(that.name)) return false;
         if (!address.equals(that.address)) return false;
         if (!zipcode.equals(that.zipcode)) return false;
@@ -123,9 +121,10 @@ public class Restaurant {
         result = 31 * result + address.hashCode();
         result = 31 * result + zipcode.hashCode();
         result = 31 * result + phone.hashCode();
-        result = 31 * result + (website != null ? website.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (image != null ? image.hashCode() : 0);
+        result = 31 * result + website.hashCode();
+        result = 31 * result + email.hashCode();
+        result = 31 * result + image.hashCode();
+        result = 31 * result + id;
         return result;
     }
 }

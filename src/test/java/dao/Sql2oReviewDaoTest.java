@@ -1,13 +1,17 @@
 package dao;
 
+import models.Restaurant;
+import models.Review;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import static org.junit.Assert.*;
 
 public class Sql2oReviewDaoTest {
+
     private Connection conn;
     private Sql2oReviewDao reviewDao;
     private Sql2oRestaurantDao restaurantDao;
@@ -19,7 +23,6 @@ public class Sql2oReviewDaoTest {
         reviewDao = new Sql2oReviewDao(sql2o);
         restaurantDao = new Sql2oRestaurantDao(sql2o);
         conn = sql2o.open();
-
     }
 
     @After
@@ -27,4 +30,21 @@ public class Sql2oReviewDaoTest {
         conn.close();
     }
 
+    @Test
+    public void deleteById() throws Exception {
+    }
+
+    @Test
+    public void getAllReviewsByRestaurant() throws Exception {
+        Restaurant testRestaurant = setupRestaurant();
+        restaurantDao.add(testRestaurant);
+        Review testReview = new Review("William Hickok", 4, testRestaurant.getId(), "Got shot playing poker");
+        reviewDao.add(testReview);
+        assertEquals(1, reviewDao.getAllReviewsByRestaurant(testRestaurant.getId()).size());
+    }
+
+    //helpers
+    public Restaurant setupRestaurant (){
+        return new Restaurant("Fish Witch", "214 NE Broadway", "97232", "503-402-9874", "http://fishwitch.com", "hellofishy@fishwitch.com", "fishwitch.jpg");
+    }
 }

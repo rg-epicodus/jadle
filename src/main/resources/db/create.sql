@@ -21,5 +21,12 @@ CREATE TABLE IF NOT EXISTS reviews (
  writtenby VARCHAR,
  rating VARCHAR,
  createdat TIMESTAMP,
- restaurantid INTEGER
+ restaurantid INTEGER,
+ content VARCHAR
 );
+
+CREATE TABLE IF NOT EXISTS restaurants_foodtypes (
+ id int PRIMARY KEY auto_increment,
+ restaurantid INTEGER,
+ foodtypeid INTEGER
+ );

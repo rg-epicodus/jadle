@@ -1,16 +1,13 @@
 package models;
 
+
 public class Foodtype {
     private String name;
     private int id;
 
-    // constructors
-
     public Foodtype(String name) {
         this.name = name;
     }
-
-    //getters and setters
 
     public String getName() {
         return name;
@@ -27,10 +24,6 @@ public class Foodtype {
     public void setId(int id) {
         this.id = id;
     }
-
-
-    // equals and hashcode
-
 
     @Override
     public boolean equals(Object o) {
