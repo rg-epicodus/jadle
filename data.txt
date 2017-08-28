@@ -1,0 +1,47 @@
+String plantName = “Tomato”;
+int daysToMaturity = 85;
+String plantSpacing = ’20-30”’
+String rowSpacing = “2-3’”
+plantingStartDate: 5/15
+plantingEndDate: 6/30
+harvestStartDate: 8/10
+harvestEndDate: 9/30
+
+String plantName = “Snap Peas”;
+int daysToMaturity = 85;
+String plantSpacing = ’20-30”’
+String rowSpacing = “2-3’”
+
+String plantName = “Cilantro”;
+int daysToMaturity = 85;
+String plantSpacing = ’20-30”’
+String rowSpacing = “2-3’”
+
+String plantName = “Potato”;
+int daysToMaturity = 85;
+String plantSpacing = ’20-30”’
+String rowSpacing = “2-3’”
+
+String plantName = “Carrot”;
+int daysToMaturity = 85;
+String plantSpacing = ’20-30”’
+String rowSpacing = “2-3’”
+
+DB.java : Java Class
+
+package models;
+
+import org.sql2o.*;
+
+
+public class DB {
+    public static Sql2o sql2o = new Sql2o("jdbc:postgresql://localhost:5432/jadle", null, null);
+}
+
+potential method to call DB
+public static List<Task> all() {
+String sql = "SELECT id, description, categoryId FROM tasks";
+try(Connection con = DB.sql2o.open()) {
+return con.createQuery(sql).executeAndFetch(Task.class);
+}
+}
